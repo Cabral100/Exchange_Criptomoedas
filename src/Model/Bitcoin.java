@@ -2,6 +2,7 @@ package Model;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Bitcoin extends Moedas implements Tarifacao{
     

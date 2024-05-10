@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Menu extends javax.swing.JFrame {
 

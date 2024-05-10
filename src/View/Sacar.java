@@ -11,7 +11,8 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author thelm
+ * @author unifvalim
+ * @author uniflduarte
  */
 public class Sacar extends javax.swing.JFrame {
 

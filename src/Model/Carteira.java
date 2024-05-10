@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Carteira{
     private ArrayList<Moedas> moedas ;

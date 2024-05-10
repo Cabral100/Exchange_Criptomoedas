@@ -2,6 +2,7 @@ package Model;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Investidor extends Pessoa{
     private double saldobtc, saldoreal, saldoethe, saldorip;

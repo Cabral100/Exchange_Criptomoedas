@@ -2,6 +2,7 @@ package Model;
 /**
  *
  * @author valim
+ * @author uniflduarte
  */
 public class ExtratoModel {
     private String NomeMoeda;

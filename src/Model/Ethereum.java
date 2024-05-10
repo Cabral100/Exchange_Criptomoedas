@@ -2,13 +2,17 @@ package Model;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
-public class Ethereum extends Moedas{
+public class Ethereum extends Moedas implements Tarifacao{
     
+    
+    @Override
     public double getTaxaCompra(){
         return 0.01;
     }
     
+    @Override
     public double getTaxaVenda(){
         return 0.02;
     }

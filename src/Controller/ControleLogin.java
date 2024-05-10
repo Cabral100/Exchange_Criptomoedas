@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author valim
+ * @author uniflduarte
  */
 public class ControleLogin {
     private Login login;

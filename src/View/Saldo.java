@@ -7,6 +7,7 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Saldo extends javax.swing.JFrame {
     

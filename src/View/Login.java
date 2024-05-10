@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Login extends javax.swing.JFrame{
     

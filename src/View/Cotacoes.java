@@ -5,7 +5,8 @@ import java.text.DecimalFormat;
 
 /**
  *
- * @author valim
+ * @author unifpvalim
+ * @author uniflduarte
  */
 public class Cotacoes extends javax.swing.JFrame {
     

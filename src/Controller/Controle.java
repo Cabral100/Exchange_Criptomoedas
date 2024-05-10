@@ -18,6 +18,7 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 /**
  *
  * @author valim
+ * @author uniflduarte
  */
 public class Controle {
     

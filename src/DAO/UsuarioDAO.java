@@ -10,6 +10,7 @@ import java.util.Date;
 /**
  *
  * @author valim
+ * @author uniflduarte
  */
 public class UsuarioDAO {
     private Connection conn;

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 /**
  *
  * @author unifpvalim
+ * @author uniflduarte
  */
 public class Extrato extends javax.swing.JFrame {
 

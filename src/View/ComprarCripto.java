@@ -11,7 +11,8 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
- * @author thelm
+ * @author unifpvalim
+ * @author uniflduarte
  */
 public class ComprarCripto extends javax.swing.JFrame {
     
