@@ -1,27 +1,24 @@
 package View;
 
+import Controller.Controle;
+import Model.CriptoAdicional1;
+import Model.CriptoAdicional2;
 import Model.Investidor;
 import java.text.DecimalFormat;
 
 /**
  *
- * @author unifpvalim
- * @author uniflduarte
+ * @author valim
  */
 public class Cotacoes extends javax.swing.JFrame {
     
     Investidor pessoa;
+    Controle controle;
     
-    public Cotacoes(Investidor pessoa){
+    public Cotacoes(Investidor pessoa,Controle controle){
         initComponents();
-        DecimalFormat df = new DecimalFormat("#0.000");
-        String cotbit = df.format(pessoa.getCarteira().getMoedas().get(1).getCotacao()).replace(',', '.');
-        String cotethe = df.format(pessoa.getCarteira().getMoedas().get(2).getCotacao()).replace(',', '.');
-        String cotrip = df.format(pessoa.getCarteira().getMoedas().get(3).getCotacao()).replace(',', '.');
-        this.pessoa = pessoa;
-        this.TxtPaneCotacoes.setText("\n\nNova cotação BITCOIN: " + cotbit + "\n\nNova cotação ETHEREUM: " + cotethe + 
-                                     "\n\nNova cotação RIPPLE: " + cotrip);
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,8 +56,8 @@ public class Cotacoes extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(LblCotacoes)
                 .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,7 +99,7 @@ public class Cotacoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCotacoes;
-    private javax.swing.JTextPane TxtPaneCotacoes;
+    public javax.swing.JTextPane TxtPaneCotacoes;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,24 +1,28 @@
 package View;
 import Controller.Controle;
 import Model.Bitcoin;
+import Model.CriptoAdicional1;
+import Model.CriptoAdicional2;
 import Model.Ethereum;
 import Model.Investidor;
 import Model.Ripple;
-import java.text.DecimalFormat;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+
 
 /**
  *
  * @author thelm
  */
-public class ComprarCripto extends javax.swing.JFrame {
+public class ComprarCripto3 extends javax.swing.JFrame {
     
     private Investidor pessoa;
     private Controle controle;
     
-    public ComprarCripto(Investidor pessoa,Controle controle){
+    public ComprarCripto3(Investidor pessoa,Controle controle){
         initComponents();
         this.pessoa = pessoa;
         this.controle = controle;
@@ -48,6 +52,8 @@ public class ComprarCripto extends javax.swing.JFrame {
         LblCotacoes = new javax.swing.JLabel();
         BtOk = new javax.swing.JButton();
         BtComprar = new javax.swing.JButton();
+        RadioBtMoeda1 = new javax.swing.JRadioButton();
+        RadioBtMoeda2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,10 +141,39 @@ public class ComprarCripto extends javax.swing.JFrame {
             }
         });
 
+        RadioBtMoeda1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        RadioBtMoeda1.setText("Moeda1");
+        RadioBtMoeda1.setToolTipText("");
+        RadioBtMoeda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioBtMoeda1ActionPerformed(evt);
+            }
+        });
+
+        RadioBtMoeda2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        RadioBtMoeda2.setText("Moeda2");
+        RadioBtMoeda2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioBtMoeda2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(RadioBtBitcoin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioBtEthereum)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioBtRipple)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(RadioBtMoeda1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RadioBtMoeda2)
+                .addGap(12, 12, 12))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -166,21 +201,13 @@ public class ComprarCripto extends javax.swing.JFrame {
                             .addComponent(TxtAreaSaldoAtualizado, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(LblQuantidade)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(TxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(RadioBtBitcoin)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(RadioBtEthereum)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(RadioBtRipple))))))
+                                .addComponent(LblQuantidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(BtComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,12 +227,16 @@ public class ComprarCripto extends javax.swing.JFrame {
                 .addComponent(LblTxtComprar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LblTxtComprar2)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RadioBtBitcoin)
-                    .addComponent(RadioBtEthereum)
-                    .addComponent(RadioBtRipple))
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(RadioBtMoeda1)
+                        .addComponent(RadioBtMoeda2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(RadioBtBitcoin)
+                        .addComponent(RadioBtEthereum)
+                        .addComponent(RadioBtRipple)))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LblQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,6 +255,8 @@ public class ComprarCripto extends javax.swing.JFrame {
     private void RadioBtBitcoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioBtBitcoinActionPerformed
         this.RadioBtEthereum.setSelected(false);
         this.RadioBtRipple.setSelected(false);
+        this.RadioBtMoeda1.setSelected(false);
+        this.RadioBtMoeda2.setSelected(false);
         pessoa.getExtrato().setNomeMoeda("Bitcoin");
         Bitcoin bitcoinObj = (Bitcoin) pessoa.getCarteira().getMoedas().get(1);
         pessoa.getExtrato().setCotgeral(pessoa.getCarteira().getMoedas().get(1).getCotacao());
@@ -233,6 +266,8 @@ public class ComprarCripto extends javax.swing.JFrame {
     private void RadioBtEthereumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioBtEthereumActionPerformed
         this.RadioBtBitcoin.setSelected(false);
         this.RadioBtRipple.setSelected(false);
+        this.RadioBtMoeda1.setSelected(false);
+        this.RadioBtMoeda2.setSelected(false);
         pessoa.getExtrato().setNomeMoeda("Ethereum");
         Ethereum etheObj = (Ethereum) pessoa.getCarteira().getMoedas().get(2);
         pessoa.getExtrato().setCotgeral(pessoa.getCarteira().getMoedas().get(2).getCotacao());
@@ -242,6 +277,8 @@ public class ComprarCripto extends javax.swing.JFrame {
     private void RadioBtRippleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioBtRippleActionPerformed
         this.RadioBtBitcoin.setSelected(false);
         this.RadioBtEthereum.setSelected(false);
+        this.RadioBtMoeda1.setSelected(false);
+        this.RadioBtMoeda2.setSelected(false);
         pessoa.getExtrato().setNomeMoeda("Ripple");
         Ripple rippleObj = (Ripple) pessoa.getCarteira().getMoedas().get(3);
         pessoa.getExtrato().setCotgeral(pessoa.getCarteira().getMoedas().get(3).getCotacao());
@@ -254,13 +291,11 @@ public class ComprarCripto extends javax.swing.JFrame {
 
     private void BtOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtOkActionPerformed
         if(this.TxtSenhaCompra.getText().equals(pessoa.getSenha()) == true){
-            JOptionPane.showMessageDialog(null,"Senha correta!" , "Sucesso", INFORMATION_MESSAGE);
-            DecimalFormat df = new DecimalFormat("#0.000");
-            String cotbit = df.format(pessoa.getCarteira().getMoedas().get(1).getCotacao()).replace(',', '.');
-            String cotethe = df.format(pessoa.getCarteira().getMoedas().get(2).getCotacao()).replace(',', '.');
-            String cotrip = df.format(pessoa.getCarteira().getMoedas().get(3).getCotacao()).replace(',', '.');
-            this.TextAreaCotacoes.setText("Cotação BITCOIN: " + cotbit + "\n\nCotação ETHEREUM: " + cotethe + 
-                                     "\n\nCotação RIPPLE: " + cotrip);
+            try {
+                controle.TxtComprar2(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(ComprarCripto3.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(null,"Senha incorreta!" , "Falha", ERROR_MESSAGE);
         }
@@ -268,14 +303,38 @@ public class ComprarCripto extends javax.swing.JFrame {
 
     private void BtComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtComprarActionPerformed
         double quantidade = Double.parseDouble(this.TxtQuantidade.getText());
-        controle.Comprar(quantidade);    
-        controle.Salvar();
+        controle.Comprar(quantidade);
         
+        controle.Salvar();
         this.RadioBtBitcoin.setSelected(false);
         this.RadioBtEthereum.setSelected(false);
         this.RadioBtRipple.setSelected(false);
+        this.RadioBtMoeda1.setSelected(false);
+        this.RadioBtMoeda2.setSelected(false);
         this.TxtQuantidade.setText("");
     }//GEN-LAST:event_BtComprarActionPerformed
+
+    private void RadioBtMoeda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioBtMoeda1ActionPerformed
+        this.RadioBtBitcoin.setSelected(false);
+        this.RadioBtMoeda2.setSelected(false);
+        this.RadioBtBitcoin.setSelected(false);
+        this.RadioBtEthereum.setSelected(false);
+        CriptoAdicional1 moeda1 = (CriptoAdicional1) pessoa.getCarteira().getMoedas().get(4);
+        pessoa.getExtrato().setNomeMoeda(moeda1.getNome());
+        pessoa.getExtrato().setCotgeral(pessoa.getCarteira().getMoedas().get(4).getCotacao());
+        pessoa.getExtrato().setTaxageral(moeda1.getTaxaCompra());
+    }//GEN-LAST:event_RadioBtMoeda1ActionPerformed
+
+    private void RadioBtMoeda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioBtMoeda2ActionPerformed
+        this.RadioBtBitcoin.setSelected(false);
+        this.RadioBtBitcoin.setSelected(false);
+        this.RadioBtEthereum.setSelected(false);
+        this.RadioBtMoeda1.setSelected(false);
+        CriptoAdicional2 moeda2 = (CriptoAdicional2) pessoa.getCarteira().getMoedas().get(5);
+        pessoa.getExtrato().setNomeMoeda(moeda2.getNome());
+        pessoa.getExtrato().setCotgeral(pessoa.getCarteira().getMoedas().get(5).getCotacao());
+        pessoa.getExtrato().setTaxageral(moeda2.getTaxaCompra());
+    }//GEN-LAST:event_RadioBtMoeda2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,8 +382,10 @@ public class ComprarCripto extends javax.swing.JFrame {
     private javax.swing.JLabel LblTxtComprar2;
     private javax.swing.JRadioButton RadioBtBitcoin;
     private javax.swing.JRadioButton RadioBtEthereum;
+    public javax.swing.JRadioButton RadioBtMoeda1;
+    public javax.swing.JRadioButton RadioBtMoeda2;
     private javax.swing.JRadioButton RadioBtRipple;
-    private javax.swing.JTextArea TextAreaCotacoes;
+    public javax.swing.JTextArea TextAreaCotacoes;
     private javax.swing.JScrollPane TxtAreaSaldoAtualizado;
     private javax.swing.JTextField TxtQuantidade;
     private javax.swing.JTextField TxtSenhaCompra;

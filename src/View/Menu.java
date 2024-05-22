@@ -1,13 +1,17 @@
 package View;
 
 import Controller.Controle;
+import Model.CriptoAdicional1;
+import Model.CriptoAdicional2;
 import Model.Investidor;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 /**
  *
  * @author unifpvalim
- * @author uniflduarte
  */
 public class Menu extends javax.swing.JFrame {
 
@@ -247,7 +251,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtSairActionPerformed
 
     private void BtConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtConsultarSaldoActionPerformed
-        Saldo saldo = new Saldo(pessoa);
+        Saldo saldo = new Saldo(pessoa,controle);
         saldo.setVisible(true);
     }//GEN-LAST:event_BtConsultarSaldoActionPerformed
 
@@ -267,18 +271,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtSacarActionPerformed
 
     private void BtComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtComprarActionPerformed
-        ComprarCripto comprar = new ComprarCripto(pessoa,controle);
-        comprar.setVisible(true);
-        
+        try {
+            controle.RBComprar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BtComprarActionPerformed
 
     private void BtVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtVenderActionPerformed
-        VenderCripto vender = new VenderCripto(pessoa,controle);
-        vender.setVisible(true);
+        try {
+            controle.RBVender();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BtVenderActionPerformed
 
     private void BtAtulizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAtulizarActionPerformed
-        controle.Cotacoes();
+        try {
+            controle.Cotacoes();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_BtAtulizarActionPerformed
 
     /**

@@ -2,10 +2,9 @@ package Model;
 /**
  *
  * @author unifpvalim
- * @author uniflduarte
  */
 public class Moedas{
-    private double cotacao,taxacompra,taxavenda;
+    private double cotacao;
 
     public Moedas() {
     }
@@ -20,12 +19,6 @@ public class Moedas{
     
     public Moedas(double cotacao){
         this.cotacao = cotacao;
-    }
-
-    public Moedas(double cotacao,double taxacompra, double taxavenda) {
-        this.cotacao = cotacao;
-        this.taxacompra = taxacompra;
-        this.taxavenda = taxavenda;
     }
 
 }

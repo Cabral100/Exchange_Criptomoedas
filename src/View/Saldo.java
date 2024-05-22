@@ -1,21 +1,24 @@
 package View;
+import Controller.Controle;
 import Model.Investidor;
-import java.text.DecimalFormat;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 /**
  *
  * @author unifpvalim
- * @author uniflduarte
  */
 public class Saldo extends javax.swing.JFrame {
     
     Investidor pessoa;
+    Controle controle;
     
-    public Saldo(Investidor pessoa) {
+    public Saldo(Investidor pessoa,Controle controle) {
         initComponents();
         this.pessoa = pessoa;
+        this.controle = controle;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -43,7 +46,6 @@ public class Saldo extends javax.swing.JFrame {
         });
 
         TxtAreaSaldo.setEditable(false);
-        TxtAreaSaldo.setBackground(new java.awt.Color(255, 255, 255));
         TxtAreaSaldo.setColumns(20);
         TxtAreaSaldo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         TxtAreaSaldo.setRows(5);
@@ -124,16 +126,18 @@ public class Saldo extends javax.swing.JFrame {
 
     private void BtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtConsultarActionPerformed
         if(this.TxtSenhaConsultar.getText().equals(pessoa.getSenha())){
-            JOptionPane.showMessageDialog(null,"Senha correta!" , "Sucesso", INFORMATION_MESSAGE);
-            DecimalFormat df = new DecimalFormat("#0.000");
-            String reais = df.format(pessoa.getSaldoreal()).replace(',', '.');
-            String bitcoin = df.format(pessoa.getSaldobtc()).replace(',', '.');
-            String ethereum = df.format(pessoa.getSaldoethe()).replace(',', '.');
-            String ripple = df.format(pessoa.getSaldorip()).replace(',', '.');
+            try {
+                if(controle.Contador() == 3){
+                    controle.Saldo1(this);   
+                }else if(controle.Contador() == 4){
+                    controle.Saldo2(this);
+                }else if(controle.Contador() == 5){
+                    controle.Saldo3(this);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
 
-            this.TxtAreaSaldo.setText("Nome: " + pessoa.getNome() + "\nCPF: " + pessoa.getCpf() +
-            "\n\nReais: " + reais + "\nBitcoin: " + bitcoin + "\nEthereum: " + ethereum +
-            "\nRipple: " + ripple);
         }else{
             JOptionPane.showMessageDialog(null,"Senha incorreta!" , "Falha", ERROR_MESSAGE);
         }
@@ -177,8 +181,8 @@ public class Saldo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtConsultar;
     private javax.swing.JLabel LblSenhaSaldo;
-    private javax.swing.JTextArea TxtAreaSaldo;
-    private javax.swing.JTextField TxtSenhaConsultar;
+    public javax.swing.JTextArea TxtAreaSaldo;
+    public javax.swing.JTextField TxtSenhaConsultar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 /**
  *
  * @author valim
- * @author uniflduarte
  */
 public class Conexao {
     public Connection getConnection() throws SQLException{

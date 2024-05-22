@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 /**
  *
  * @author unifpvalim
- * @author uniflduarte
  */
 public class Depositar extends javax.swing.JFrame {
 
